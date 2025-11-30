@@ -1,0 +1,35 @@
+import cv2
+
+# Note the ffmpeg options appended to the URL
+# stream_url = (
+#     "udp://0.0.0.0:2030"
+#     "?overrun_nonfatal=1"
+#     "&fifo_size=500000"
+#     "&flags=low_delay"
+# )
+
+stream_url = (
+    "udp://0.0.0.0:2031"
+    "?overrun_nonfatal=1"
+    "&fifo_size=500000"
+    "&flags=low_delay"
+)
+
+cap = cv2.VideoCapture(stream_url, cv2.CAP_FFMPEG)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+
+if not cap.isOpened():
+    print("? Unable to open stream")
+    exit()
+
+print("? Low-latency stream started ? press 'q' to quit.")
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        continue
+    cv2.imshow("Low-Latency UDP Stream", frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
