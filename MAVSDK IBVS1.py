@@ -196,23 +196,31 @@ async def mavsdk_worker():
     async def start_offboard():
         nonlocal offboard_started
         if offboard_started:
-            return
-        await drone.offboard.set_velocity_body(
-            VelocityBodyYawspeed(0.0, 0.0, 0.0, 0.0)
-        )
+            return True
+        try:
+            await drone.offboard.set_velocity_body(
+                VelocityBodyYawspeed(0.0, 0.0, 0.0, 0.0)
+            )
+        except OffboardError as e:
+            print("[MAVSDK] Initial OFFBOARD setpoint ERROR:", e._result)
+            return False
         try:
             await drone.offboard.start()
             offboard_started = True
             print("[MAVSDK] OFFBOARD started.")
+            return True
         except OffboardError as e:
             print("[MAVSDK] OFFBOARD start ERROR:", e._result)
+            return False
 
     async def offboard_takeoff():
         nonlocal offboard_started
         print("[MAVSDK] Takeoff requested...")
         try:
             await drone.action.arm()
-            await start_offboard()
+            if not await start_offboard():
+                print("[MAVSDK] Takeoff aborted because OFFBOARD did not start.")
+                return
 
             print("[MAVSDK] Climbing...")
             t0 = time.time()
@@ -260,6 +268,12 @@ async def mavsdk_worker():
         if do_land:
             print("[MAVSDK] Landing requested...")
             try:
+                if offboard_started:
+                    try:
+                        await drone.offboard.stop()
+                    except OffboardError as e:
+                        print("[MAVSDK] OFFBOARD stop before land ERROR:", e._result)
+                    offboard_started = False
                 await drone.action.land()
             except Exception as e:
                 print("[MAVSDK] Land ERROR:", e)
@@ -453,40 +467,51 @@ def main():
         key = cv2.waitKey(1) & 0xFF
 
         if key != 255:
-            last_key_time = time.time()
+            with state_lock:
+                last_key_time = time.time()
 
         if key == ord('f'):
-            IBVS_enabled = not IBVS_enabled
+            with state_lock:
+                IBVS_enabled = not IBVS_enabled
             PID_X.reset(); PID_Y.reset(); PID_Z.reset()
             print("IBVS =", IBVS_enabled)
 
         elif key == ord('t'):
-            takeoff_request = True
+            with state_lock:
+                takeoff_request = True
 
         elif key == ord('l'):
-            land_request = True
+            with state_lock:
+                land_request = True
 
         # Manual override (disable IBVS)
         elif key == ord('w'):
-            IBVS_enabled = False
-            vx = MANUAL_VEL_XY
+            with state_lock:
+                IBVS_enabled = False
+                vx = MANUAL_VEL_XY
         elif key == ord('s'):
-            IBVS_enabled = False
-            vx = -MANUAL_VEL_XY
+            with state_lock:
+                IBVS_enabled = False
+                vx = -MANUAL_VEL_XY
         elif key == ord('a'):
-            IBVS_enabled = False
-            vy = -MANUAL_VEL_XY
+            with state_lock:
+                IBVS_enabled = False
+                vy = -MANUAL_VEL_XY
         elif key == ord('d'):
-            IBVS_enabled = False
-            vy = MANUAL_VEL_XY
+            with state_lock:
+                IBVS_enabled = False
+                vy = MANUAL_VEL_XY
         elif key == 82:  # up arrow -> UP (Z-)
-            IBVS_enabled = False
-            vz = -MANUAL_VEL_Z
+            with state_lock:
+                IBVS_enabled = False
+                vz = -MANUAL_VEL_Z
         elif key == 84:  # down arrow -> DOWN (Z+)
-            IBVS_enabled = False
-            vz = MANUAL_VEL_Z
+            with state_lock:
+                IBVS_enabled = False
+                vz = MANUAL_VEL_Z
         elif key == 27:  # ESC
-            running = False
+            with state_lock:
+                running = False
             break
 
     camera.stop()

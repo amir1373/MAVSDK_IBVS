@@ -1,0 +1,3 @@
+[submodule "CableCuttingIBVS"]
+	path = CableCuttingIBVS
+	url = https://github.com/amir1373/CableCuttingIBVS.git
