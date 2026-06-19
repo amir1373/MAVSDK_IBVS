@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+MaskRCNNtest/mask_rcnn.onnx filter=lfs diff=lfs merge=lfs -text
+MaskRCNNtest/mask_rcnn_best.pth filter=lfs diff=lfs merge=lfs -text
