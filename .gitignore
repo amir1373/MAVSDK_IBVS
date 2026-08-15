@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+
+recordings/
+frames/
+failure_frames/
+pidnet_outputs/
