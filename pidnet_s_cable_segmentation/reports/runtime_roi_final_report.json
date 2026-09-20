@@ -1,0 +1,92 @@
+{
+  "selected_checkpoint": "/content/drive/MyDrive/cable_detection/pidnet_s_cable_runtime_roi_finetune/checkpoints/best_safe_fullhd.pth",
+  "baseline_validation": {
+    "full_frame": {
+      "mean_iou": 0.6843909025192261,
+      "mean_dice": 0.7996712327003479,
+      "pixel_accuracy": 0.978213369846344,
+      "per_class_iou": {
+        "background": 0.9833357334136963,
+        "Black Wire": 0.6763786673545837,
+        "Lashing Wire": 0.5146393179893494,
+        "Messenger": 0.5632098913192749
+      },
+      "loss": 0.23387572164497067,
+      "hard_negative_frames": 13,
+      "hard_negative_false_positive_frames": 3,
+      "hard_negative_false_positive_rate": 0.23076923076923078,
+      "hard_negative_median_cable_pixels": 572.0
+    },
+    "runtime_roi": {
+      "mean_iou": 0.6767991185188293,
+      "mean_dice": 0.7933457493782043,
+      "pixel_accuracy": 0.97378009557724,
+      "per_class_iou": {
+        "background": 0.9802178144454956,
+        "Black Wire": 0.6760903000831604,
+        "Lashing Wire": 0.4929980933666229,
+        "Messenger": 0.5578901767730713
+      },
+      "loss": 0.25774630713543106,
+      "hard_negative_frames": 0,
+      "hard_negative_false_positive_frames": 0,
+      "hard_negative_false_positive_rate": NaN,
+      "hard_negative_median_cable_pixels": NaN
+    }
+  },
+  "selected_validation": {
+    "mean_iou": 0.6786526441574097,
+    "mean_dice": 0.7948576211929321,
+    "pixel_accuracy": 0.9780914783477783,
+    "per_class_iou": {
+      "background": 0.983066737651825,
+      "Black Wire": 0.6786743402481079,
+      "Lashing Wire": 0.5157290101051331,
+      "Messenger": 0.5371404886245728
+    },
+    "loss": 0.24216051394900967,
+    "hard_negative_frames": 13,
+    "hard_negative_false_positive_frames": 0,
+    "hard_negative_false_positive_rate": 0.0,
+    "hard_negative_median_cable_pixels": 0.0
+  },
+  "selected_runtime_roi_validation": {
+    "mean_iou": 0.6979791522026062,
+    "mean_dice": 0.8097615242004395,
+    "pixel_accuracy": 0.9779712557792664,
+    "per_class_iou": {
+      "background": 0.9843394756317139,
+      "Black Wire": 0.7123770713806152,
+      "Lashing Wire": 0.527236819267273,
+      "Messenger": 0.5679634213447571
+    },
+    "loss": 0.2562609083122677,
+    "hard_negative_frames": 0,
+    "hard_negative_false_positive_frames": 0,
+    "hard_negative_false_positive_rate": NaN,
+    "hard_negative_median_cable_pixels": NaN
+  },
+  "selected_original_test": {
+    "mean_iou": 0.7559226155281067,
+    "mean_dice": 0.8544406890869141,
+    "pixel_accuracy": 0.9828746318817139,
+    "per_class_iou": {
+      "background": 0.9859037399291992,
+      "Black Wire": 0.7370824217796326,
+      "Lashing Wire": 0.6422838568687439,
+      "Messenger": 0.6584203243255615
+    },
+    "loss": 0.16716493916261446,
+    "hard_negative_frames": 0,
+    "hard_negative_false_positive_frames": 0,
+    "hard_negative_false_positive_rate": NaN,
+    "hard_negative_median_cable_pixels": NaN
+  },
+  "training_resolution": [
+    1920,
+    1080
+  ],
+  "hard_negative_train_images": 51,
+  "hard_negative_validation_images": 13,
+  "pseudo_positive_train_images": 20
+}

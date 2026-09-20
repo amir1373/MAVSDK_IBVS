@@ -1,0 +1,57 @@
+{
+  "selected_checkpoint": "/content/drive/MyDrive/cable_detection/pidnet_s_cable_distance_boundary_finetune/checkpoints/best_safe_fullhd.pth",
+  "baseline_validation": {
+    "mean_iou": 0.6810791492462158,
+    "mean_dice": 0.7971912622451782,
+    "pixel_accuracy": 0.9763010740280151,
+    "per_class_iou": {
+      "background": 0.9816575050354004,
+      "Black Wire": 0.6720474362373352,
+      "Lashing Wire": 0.5141181945800781,
+      "Messenger": 0.5564934015274048
+    },
+    "loss": 0.22102996950298046,
+    "hard_negative_frames": 0,
+    "hard_negative_false_positive_frames": 0,
+    "hard_negative_false_positive_rate": NaN,
+    "hard_negative_median_cable_pixels": NaN
+  },
+  "selected_validation": {
+    "mean_iou": 0.6842463612556458,
+    "mean_dice": 0.79960697889328,
+    "pixel_accuracy": 0.9772712588310242,
+    "per_class_iou": {
+      "background": 0.9825779795646667,
+      "Black Wire": 0.6765531301498413,
+      "Lashing Wire": 0.514641523361206,
+      "Messenger": 0.5632129311561584
+    },
+    "loss": 0.22953890083414136,
+    "hard_negative_frames": 0,
+    "hard_negative_false_positive_frames": 0,
+    "hard_negative_false_positive_rate": NaN,
+    "hard_negative_median_cable_pixels": NaN
+  },
+  "selected_original_test": {
+    "mean_iou": 0.7577451467514038,
+    "mean_dice": 0.8556529879570007,
+    "pixel_accuracy": 0.9834901094436646,
+    "per_class_iou": {
+      "background": 0.9867767095565796,
+      "Black Wire": 0.7395352125167847,
+      "Lashing Wire": 0.6379969716072083,
+      "Messenger": 0.666671633720398
+    },
+    "loss": 0.16841557031466967,
+    "hard_negative_frames": 0,
+    "hard_negative_false_positive_frames": 0,
+    "hard_negative_false_positive_rate": NaN,
+    "hard_negative_median_cable_pixels": NaN
+  },
+  "training_resolution": [
+    1920,
+    1080
+  ],
+  "hard_negative_train_images": 0,
+  "hard_negative_validation_images": 0
+}

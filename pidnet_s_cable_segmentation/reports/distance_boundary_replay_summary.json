@@ -1,0 +1,81 @@
+{
+  "checkpoint": "pidnet_s_cable_segmentation/checkpoints/best_safe_fullhd_distance_boundary.pth",
+  "checkpoint_sha256": "decdbdab3bd89bc5486989a27b85c3fda4a1c8b35563587e97386823b9a0b13b",
+  "training_resolution": [
+    1920,
+    1080
+  ],
+  "selected_epoch": 15,
+  "validation": {
+    "baseline_mean_iou": 0.6810791492462158,
+    "selected_mean_iou": 0.6842463612556458,
+    "selected_mean_dice": 0.79960697889328,
+    "selected_pixel_accuracy": 0.9772712588310242
+  },
+  "held_out_test": {
+    "mean_iou": 0.7577451467514038,
+    "mean_dice": 0.8556529879570007,
+    "pixel_accuracy": 0.9834901094436646
+  },
+  "candidate_replays": [
+    {
+      "recording": "20260814_150123_pidnet_ibvs_raw.mp4",
+      "frames": 370,
+      "first_valid_frame": 7,
+      "first_valid_time_s": 0.233333,
+      "valid_frames": 1,
+      "maximum_consecutive_valid_frames": 1,
+      "first_locked_frame": null,
+      "median_inference_ms": 62.635
+    },
+    {
+      "recording": "20260814_150336_pidnet_ibvs_raw.mp4",
+      "frames": 806,
+      "first_valid_frame": 138,
+      "first_valid_time_s": 4.6,
+      "valid_frames": 36,
+      "maximum_consecutive_valid_frames": 2,
+      "first_locked_frame": null,
+      "median_inference_ms": 62.027
+    },
+    {
+      "recording": "20260814_151005_pidnet_ibvs_raw.mp4",
+      "frames": 252,
+      "first_valid_frame": 1,
+      "first_valid_time_s": 0.033333,
+      "valid_frames": 12,
+      "maximum_consecutive_valid_frames": 1,
+      "first_locked_frame": null,
+      "median_inference_ms": 61.6945
+    }
+  ],
+  "main_recording_comparison": [
+    {
+      "model": "legacy_768_roi",
+      "first_valid_frame": 182,
+      "first_locked_frame": 189,
+      "first_locked_time_s": 6.3,
+      "valid_frames": 316,
+      "maximum_consecutive_valid_frames": 56,
+      "median_inference_ms": 17.084
+    },
+    {
+      "model": "previous_fullhd",
+      "first_valid_frame": 115,
+      "first_locked_frame": null,
+      "valid_frames": 36,
+      "maximum_consecutive_valid_frames": 2,
+      "median_inference_ms": 61.975
+    },
+    {
+      "model": "distance_boundary_fullhd",
+      "first_valid_frame": 138,
+      "first_locked_frame": null,
+      "valid_frames": 36,
+      "maximum_consecutive_valid_frames": 2,
+      "median_inference_ms": 62.027
+    }
+  ],
+  "deployment_decision": "retain_legacy_default",
+  "deployment_reason": "The candidate improves held-out segmentation metrics but does not produce the consecutive valid frames required for a stable cable lock on any of the three raw recordings."
+}

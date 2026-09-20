@@ -76,6 +76,10 @@ def main():
             time.sleep(0.002)
             continue
 
+        # The installed FPV camera is physically upside down. A 180-degree
+        # rotation restores both upright orientation and correct left/right.
+        frame = cv2.rotate(frame, cv2.ROTATE_180)
+
         displayed += 1
         elapsed = max(time.time() - t0, 1e-6)
         display_fps = displayed / elapsed
